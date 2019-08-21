@@ -1,5 +1,5 @@
 {
-  "name": "tiny-sql",
+  "name": "toy-sql",
   "version": "1.0.2",
   "description": "",
   "main": "mysql.js",

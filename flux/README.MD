@@ -1,11 +1,10 @@
-# like-flux
+# Flux
 
-flux核心功能
+[Original project](https://github.com/facebook/flux)
+
+## Quick Start
 
 ``` bash
-
-yarn install
-
-yarn start
-
+npm i 
+npm start
 ```

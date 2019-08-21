@@ -5,10 +5,10 @@ class ObservableObject {
     this._target = target;
     this._values = {};
     Object.defineProperty(target, "$mobservable", {
-			enumerable: false,
-			configurable: false,
-			value: this
-		});
+      enumerable: false,
+      configurable: false,
+      value: this
+    });
   }
 
   set(propName, value) {

@@ -1,9 +1,10 @@
-# like-redux
+# Redux
 
-redux和react-redux的核心功能
+[Original project](https://github.com/reduxjs/redux)
+
+## Quick Start
 
 ``` bash
-yarn
-
-yarn start
+npm i 
+npm start
 ```

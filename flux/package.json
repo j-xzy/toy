@@ -1,7 +1,6 @@
 {
-  "name": "a",
-  "version": "0.1.0",
-  "private": true,
+  "name": "toy-flux",
+  "version": "0.0.0",
   "scripts": {
     "start": "parcel ./example/index.html"
   },
