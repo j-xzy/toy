@@ -1,0 +1,26 @@
+{
+  "compilerOptions": {
+    "sourceMap": true,
+    "removeComments": true,
+    "outDir": "./lib",
+    "moduleResolution": "node",
+    "strict": true,
+    "noImplicitAny": true,
+    "declaration": true,
+    "experimentalDecorators": true,
+    "rootDir": "./src",
+    "module": "commonjs",
+    "target": "esnext",
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "strictBindCallApply": false,
+    "emitDecoratorMetadata": true
+  },
+  "include": [
+    "./src",
+    "interface/typing.d.ts"
+  ],
+  "exclude": [
+    "node_modules"
+  ]
+}

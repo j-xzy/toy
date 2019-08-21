@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>redux</title>
+</head>
+
+<body>
+  <div>
+    <div id="app"></div>
+    <input id='input' type="text" />
+    <button id="push">入栈</button>
+    <button id="pop">出栈</button>
+  </div>
+  <script>
+    function CreateStore(reducer, preloadedState) {
+      function Store() {
+        this.reducer = reducer;
+        this.listeners = [];
+        this.curState = preloadedState;
+        this.dispatch({ type: '__init__' });
+      }
+
+      Store.prototype.subscribe = function (listener) {
+        this.listeners.push(listener);
+      }
+
+      Store.prototype.getState = function () {
+        return this.curState;
+      }
+
+      Store.prototype.dispatch = function (action) {
+        this.curState = this.reducer(this.curState, action);
+        this.listeners.forEach((listener) => {
+          listener();
+        });
+      }
+      return new Store();
+    }
+
+    function Todo(state, action) {
+      switch (action.type) {
+        case 'push':
+          return [...state, action.data];
+        case 'pop':
+          let newState = [...state];
+          newState.pop();
+          return newState;
+        default: return state;
+      }
+    }
+
+    const store = CreateStore(Todo, []);
+
+    store.subscribe(() => {
+      app.innerHTML = store.getState().join(',');
+    });
+
+    push.onclick = function () {
+      store.dispatch({ type: 'push', data: input.value });
+      input.value = '';
+    }
+
+    pop.onclick = function () {
+      store.dispatch({ type: 'pop' });
+      input.value = '';
+    }
+
+  </script>
+</body>
+
+</html>

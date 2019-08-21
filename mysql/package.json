@@ -1,0 +1,16 @@
+{
+  "name": "tiny-sql",
+  "version": "1.0.2",
+  "description": "",
+  "main": "mysql.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/wu38607/mysql.git"
+  },
+  "author": "whj",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/wu38607/mysql/issues"
+  },
+  "homepage": "https://github.com/wu38607/mysql#readme"
+}
