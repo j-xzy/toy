@@ -1,4 +1,4 @@
-# toy projects
+# 🎨 toy projects
 
 1. [flux](https://github.com/whj1995/toy/tree/master/flux)
 2. [mobx](https://github.com/whj1995/toy/tree/master/mobx)
