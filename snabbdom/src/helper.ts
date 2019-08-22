@@ -29,3 +29,18 @@ export function parseSel(sel: string) {
 
   return { type, classes, id: id || undefined };
 }
+
+export function sameVnode(vnode1: IVNode, vnode2: IVNode): boolean {
+  return vnode1.key === vnode2.key && vnode1.sel === vnode2.sel;
+}
+
+export function isVNode(node: IVNode | Element): node is IVNode {
+  return (node as IVNode).__vnode;
+}
+
+export function clearChildren(parent: Element) {
+  const children = parent.children;
+  for (let i = 0; i < children.length; ++i) {
+    parent.removeChild(children[i]);
+  }
+}

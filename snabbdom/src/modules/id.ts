@@ -1,12 +1,16 @@
-function create(vnode: IVNode) {
+function update(oldVNode: IVNode, vnode: IVNode) {
   if (!vnode.elm) {
     return;
   }
-  if (typeof vnode.id !== 'undefined') {
-    (vnode.elm as any).id = vnode.id;
+  const id = vnode.id;
+  const oldId = oldVNode.id;
+
+  if (id !== oldId && id !== undefined) {
+    (vnode.elm as any).id = id;
   }
 }
 
 export const idModule: Partial<IHooks> = {
-  create
+  create: update,
+  update
 };

@@ -1,14 +1,25 @@
-function create(vnode: IVNode) {
+function update(oldVNode: IVNode, vnode: IVNode) {
   if (!vnode.elm) {
     return;
   }
-  if ((vnode.elm as any).classList && vnode.classes) {
-    if (vnode.classes.length > 0) {
-      (vnode.elm as any).classList.add(...vnode.classes);
+
+  const classes = vnode.classes || [];
+  const oldClasses = oldVNode.classes || [];
+
+  classes.forEach((cls) => {
+    if (!oldClasses.includes(cls)) {
+      vnode.elm!.classList.add(cls);
     }
-  }
+  });
+
+  oldClasses.forEach((cls) => {
+    if (!classes.includes(cls)) {
+      vnode.elm!.classList.remove(cls);
+    }
+  });
 }
 
 export const classModule: Partial<IHooks> = {
-  create
+  create: update,
+  update
 };

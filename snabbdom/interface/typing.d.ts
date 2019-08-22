@@ -2,21 +2,23 @@ interface IVNode {
   sel: string;
   type: string;
   id?: string;
+  key?: string | number;
   classes?: string[];
   children: IVNode[] | string;
   data?: IVNodeData;
-  elm?: Node;
+  elm?: Element;
   __vnode: true;
 }
 
 interface IVNodeData {
   style?: Partial<CSSStyleDeclaration>;
-  class?: string[];
-  attr?: { [p: string]: string };
+  attr?: { [p: string]: any };
 }
 
-type ICreateHook = (node: IVNode) => any;
+type ICreateHook = (node: IVNode, ...p: any[]) => any;
+type IUpdateHook = (node: IVNode, oldNode: IVNode) => any;
 
 interface IHooks {
-  create: ICreateHook;
+  create: IUpdateHook;
+  update: IUpdateHook;
 }
