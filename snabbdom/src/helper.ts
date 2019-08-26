@@ -44,3 +44,23 @@ export function clearChildren(parent: Element) {
     parent.removeChild(children[i]);
   }
 }
+
+export function replaceEle(newEl: Element, oldEl: Element) {
+  if (oldEl.parentNode) {
+    oldEl.parentNode.insertBefore(newEl, oldEl);
+    oldEl.parentNode.removeChild(oldEl);
+  }
+}
+
+export function removeEles(els: Element[]) {
+  if (els.length <= 0) {
+    return;
+  }
+  const parent = els[0].parentElement;
+  if (!parent) {
+    return;
+  }
+  els.forEach((el) => {
+    parent.removeChild(el);
+  });
+}

@@ -63,8 +63,20 @@ export function vdom(modules: Array<Partial<IHooks>> = []) {
     updateChildren(elm, oldCh, ch);
   }
 
-  function updateChildren(_parent: Element, _oldCh: IVNode[], _newCh: IVNode[]) {
-    //
+  function updateChildren(parent: Element, oldCh: IVNode[], newCh: IVNode[]) {
+    newCh.forEach((newChNode, idx) => {
+      const oldChNode = oldCh[idx];
+      if (!oldChNode) {
+        parent.appendChild(createElm(newChNode));
+      } else if (helper.sameVnode(newChNode, oldChNode)) {
+        patchVNode(oldChNode, newChNode);
+      } else {
+        createElm(newChNode);
+        helper.replaceEle(newChNode.elm!, oldChNode.elm!);
+      }
+    });
+    const deletedCh = oldCh.slice(newCh.length);
+    helper.removeEles(deletedCh.map((chNode) => chNode.elm!));
   }
 
   function patch(oldVNode: IVNode | Element, vnode: IVNode) {
@@ -76,10 +88,7 @@ export function vdom(modules: Array<Partial<IHooks>> = []) {
     if (!helper.sameVnode(oldVNode, vnode)) {
       // 根节点不相同，直接替换旧的
       createElm(vnode);
-      if (oldVNode.elm && oldVNode.elm.parentNode) {
-        oldVNode.elm.parentNode.insertBefore(vnode.elm!, oldVNode.elm);
-        oldVNode.elm.parentNode.removeChild(oldVNode.elm);
-      }
+      helper.replaceEle(vnode.elm!, oldVNode.elm!);
       return vnode;
     }
     // 根节点相同，开始diff
