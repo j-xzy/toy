@@ -1,4 +1,4 @@
-# Flux
+# snabbdom
 
 [Original project](https://github.com/snabbdom/snabbdom)
 
